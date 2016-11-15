@@ -1,12 +1,12 @@
 {
-  "name": "client-templates-example",
-  "description": "basic client-side template configuration",
+  "name": "sass-example",
+  "description": "basic sass example configuration",
   "version": "0.0.1",
-  "author": "static-dev",
+  "author": "danmillar",
   "ava": {
     "verbose": "true"
   },
-  "bugs": "https://github.com/static-dev/client-templates-example/issues",
+  "bugs": "https://github.com/danmillar/spike-sass-example/issues",
   "dependencies": {
     "babel-preset-latest": "^6.14.0",
     "hard-source-webpack-plugin": "0.0.38",
@@ -26,10 +26,10 @@
     "standard": "^8.0.0",
     "webpack": "^1.13.3"
   },
-  "homepage": "https://github.com/static-dev/client-templates-example",
+  "homepage": "https://github.com/danmillar/spike-sass-example",
   "main": "app.js",
   "private": true,
-  "repository": "https://github.com/static-dev/client-templates-example",
+  "repository": "https://github.com/danmillar/spike-sass-example",
   "scripts": {
     "lint": "standard | snazzy",
     "precommit": "npm run lint -s",
