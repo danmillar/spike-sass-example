@@ -1,6 +1,6 @@
-# client-templates-example
+# sass-example
 
-basic client-side template configuration
+basic sass example configuration (also includes client-side template example)
 
 ## Setup
 
