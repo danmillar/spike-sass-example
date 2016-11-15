@@ -1,5 +1,6 @@
 const htmlStandards = require('reshape-standard')
 const cssStandards = require('spike-css-standards')
+const sass = require('sass-loader')
 const pageId = require('spike-page-id')
 const {UglifyJsPlugin, DedupePlugin, OccurrenceOrderPlugin} = require('webpack').optimize
 
@@ -14,7 +15,10 @@ module.exports = {
   ],
   // image optimization
   module: {
-    loaders: [{ test: /\.(jpe?g|png|gif|svg)$/i, loader: 'image-webpack' }]
+    loaders: [
+      { test: /\.(jpe?g|png|gif|svg)$/i, loader: 'image-webpack' },
+      { test: /\.scss$/, loader: 'source!postcss!sass?sourceMap', extension: 'css' }      
+    ]
   },
   // adds html minification plugin
   reshape: (ctx) => {
@@ -28,6 +32,7 @@ module.exports = {
   postcss: (ctx) => {
     return cssStandards({
       webpack: ctx,
+      parser: false,
       minify: true,
       warnForDuplicates: false // cssnano includes autoprefixer
     })

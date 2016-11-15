@@ -5,8 +5,6 @@ extends(src='layout.sgr')
     p Example of locals: {{ foo }}
     p(md) Example of **markdown**
     p Example of "smart quotes" -- and dashes
-    p Example of client-side template loading:
-    #container loading...
 
     hr
 

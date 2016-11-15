@@ -2,6 +2,7 @@ const path = require('path')
 const HardSourcePlugin = require('hard-source-webpack-plugin')
 const htmlStandards = require('reshape-standard')
 const cssStandards = require('spike-css-standards')
+// Require the sass-loader
 const sass = require('sass-loader')
 const jsStandards = require('babel-preset-latest')
 const pageId = require('spike-page-id')
@@ -10,10 +11,10 @@ module.exports = {
   devtool: 'source-map',
   matchers: {
     html: '*(**/)*.sgr',
+    // Set the extension to css    
     css: '*(**/)*.css'
   },
-  // make sure your templates are ignored so they don't compile normally
-  ignore: ['**/layout.sgr', '**/_*', '**/.*', '_cache/**', 'readme.md', '**/templates/**.sgr'],
+  ignore: ['**/layout.sgr', '**/_*', '**/.*', '_cache/**', 'readme.md'],
   reshape: (ctx) => {
     return htmlStandards({
       webpack: ctx,
@@ -21,16 +22,12 @@ module.exports = {
     })
   },
   postcss: (ctx) => {
-    return cssStandards({ parser: false, webpack: ctx })
+    // Set parser to false
+    return cssStandards({ webpack: ctx, parser: false })
   },
-  // here, we add a custom loader for our client templates.
-  // setting locals to false will compile as a template rather than html
+  // here, we add a custom loader for our sass files.
   module: {
     loaders: [
-      {
-        test: /templates\/.*\.sgr$/, 
-        loader: 'reshape?locals=false'
-      },
       {
         test: /\.scss$/, 
         loader: 'source!postcss!sass?sourceMap', 
@@ -40,7 +37,6 @@ module.exports = {
   },  
   babel: { presets: [jsStandards] },
   plugins: [
-    // if you have issues with the templates, try clearing your cache!
     new HardSourcePlugin({
       environmentPaths: { root: __dirname },
       recordsPath: path.join(__dirname, '_cache/records.json'),
